@@ -1,0 +1,40 @@
+defaultTasks   'task2'
+
+apply plugin : 'java'
+apply plugin: 'pmd'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+version = '1.0'
+mainClassName='AntLabMain'
+
+task task2 << {
+    println 'Task 2'
+}
+
+jar  {
+  manifest {
+     attributes  'Implementation-Title' : 'AntLabMain' ,
+                 'Implementation-Version' : version,
+                 'Main-Class' : 'AntLabMain'
+    }
+
+      destinationDir = file('.')
+      archiveName = 'AntLabMain.jar'
+}
+
+repositories {
+	flatDir {
+		dirs 'lib'
+	}
+}
+
+dependencies {
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '3.6.7.Final'
+	compile group: 'resources', name: 'resources'
+	testCompile group: 'junit', name: 'junit', version: '4.+'
+}
+
+repositories {
+	mavenCentral()
+}
