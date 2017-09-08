@@ -1,40 +1,23 @@
-defaultTasks   'task2'
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
 
-apply plugin : 'java'
-apply plugin: 'pmd'
-apply plugin: 'application'
-
-sourceCompatibility = 1.8
-version = '1.0'
-mainClassName='AntLabMain'
-
-task task2 << {
-    println 'Task 2'
-}
-
-jar  {
-  manifest {
-     attributes  'Implementation-Title' : 'AntLabMain' ,
-                 'Implementation-Version' : version,
-                 'Main-Class' : 'AntLabMain'
+buildscript {
+    repositories {
+        jcenter()
     }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.3'
 
-      destinationDir = file('.')
-      archiveName = 'AntLabMain.jar'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
 }
 
-repositories {
-	flatDir {
-		dirs 'lib'
-	}
+allprojects {
+    repositories {
+        jcenter()
+    }
 }
 
-dependencies {
-    compile group: 'org.hibernate', name: 'hibernate-core', version: '3.6.7.Final'
-	compile group: 'resources', name: 'resources'
-	testCompile group: 'junit', name: 'junit', version: '4.+'
-}
-
-repositories {
-	mavenCentral()
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }
