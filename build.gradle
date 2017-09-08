@@ -1,23 +1,22 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply plugin : 'java'
 
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
+version = '1.0'
+defaultTasks 'jar'
 
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-    }
+
+
+jar  {
+  manifest {
+     attributes  'Implementation-Title' : 'AntLabMain' ,
+                 'Implementation-Version' : version,
+                 'Main-Class' : 'edu/gatech/oad/antlab/pkg1/AntLabMain',
+                 'Class-Path': '../../lib/resources.jar'
+    }  
 }
 
-allprojects {
-    repositories {
-        jcenter()
-    }
+
+dependencies {
+    compile files('lib/resources.jar')
+
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
